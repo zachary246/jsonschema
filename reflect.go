@@ -91,10 +91,19 @@ type Type struct {
 	ReadOnly  bool `json:"readOnly,omitempty"`
 	WriteOnly bool `json:"writeOnly,omitempty"`
 	// RFC draft-wright-json-schema-hyperschema-00, section 4
-	Media          *Type  `json:"media,omitempty"`          // section 4.3
-	BinaryEncoding string `json:"binaryEncoding,omitempty"` // section 4.3
+	Media          *Type    `json:"media,omitempty"`          // section 4.3
+	BinaryEncoding string   `json:"binaryEncoding,omitempty"` // section 4.3
+	OneOfs         []OneOfs `json:"oneOfs,omitempty"`         // support oneOfs
+	DisplayName    string   `json:"displayName,omitempty"`    // display name
 
 	Extras map[string]interface{} `json:"-"`
+}
+
+type OneOfs struct {
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
+	Fields      []string `json:"fields"`
+	Required    bool     `json:"required"`
 }
 
 // Reflect reflects to Schema from a value using the default Reflector
